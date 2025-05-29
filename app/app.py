@@ -1,7 +1,9 @@
 from flask import Flask, jsonify
 import psycopg2
 
+
 app = Flask(__name__)
+
 
 def get_db_connection():
     conn = psycopg2.connect(
@@ -12,9 +14,11 @@ def get_db_connection():
     )
     return conn
 
+
 @app.route('/')
 def home():
     return "Flask app connected to PostgreSQL!"
+
 
 @app.route('/users')
 def users():
@@ -25,6 +29,7 @@ def users():
     cur.close()
     conn.close()
     return jsonify(users)
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
